@@ -1,0 +1,32 @@
+<!-- BEGIN PAGE TITLE-->
+<section>
+    <h3 class="page-title"> Profile
+        <small>Delete Profile</small>
+    </h3>
+</section>
+<!-- END PAGE TITLE-->
+
+<!--BEGIN CONTENT-->
+<?php echo '<div class="row"><div class="col-sm-offset-3 col-sm-6">' . $this->getContent() . '</div></div>'; ?>
+
+<!-- PORTLET MAIN -->
+<div class="portlet light profile-sidebar-portlet ">
+    <!-- SIDEBAR USER TITLE -->
+    <div class="profile-usertitle">
+        <div class="profile-usertitle-name">Profile <?= !empty($object_profile->email) ? $object_profile->first_name : null; ?> Deleted </div>
+    </div>
+    <!--HY div class="profile-usertitle">
+        <div class="profile-usertitle-name">First Name: <?= !empty($object_profile->first_name) ? $object_profile->first_name : null; ?> </div>
+        <div class="profile-usertitle-job"> Type: <?= !empty($object_profile->type) ? $object_profile->type : null; ?> </div>
+    </div HY-->
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR BUTTONS -->
+    <!--HY div class="profile-userbuttons">
+        <button type="button" class="btn btn-circle green btn-sm"
+                onclick="window.location = '<?= $this->url->get('users/type') ?>'; return false;">Change Type</button>
+    </div HY-->
+    <!-- END SIDEBAR BUTTONS -->
+    <!-- SIDEBAR MENU -->
+    <!-- END MENU -->
+</div>
+<!-- END PORTLET MAIN -->

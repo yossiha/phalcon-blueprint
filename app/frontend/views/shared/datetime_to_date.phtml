@@ -1,0 +1,20 @@
+<?php
+if(!isset($date) || empty($date))
+    return;
+
+if(!isset($format)) {
+    $format='europe';
+}
+
+if($format=='europe') {
+    echo date("d", strtotime($project->created)) . '/'
+        . date("m", strtotime($project->created)) . '/'
+        . date("Y", strtotime($project->created));
+    return;
+}
+elseif($format=='american') {
+    echo date("m", strtotime($project->created)) . '/'
+        . date("d", strtotime($project->created)) . '/'
+        . date("Y", strtotime($project->created));
+    return;
+}

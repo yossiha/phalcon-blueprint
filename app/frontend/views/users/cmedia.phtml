@@ -1,0 +1,38 @@
+<!-- BEGIN PAGE TITLE-->
+<section>
+    <h3 class="page-title"> Profile
+        <small>Add Media</small>
+    </h3>
+</section>
+<!-- END PAGE TITLE-->
+
+<!--BEGIN CONTENT-->
+<?php echo '<div class="row"><div class="col-sm-offset-3 col-sm-6">' . $this->getContent() . '</div></div>'; ?>
+
+<!-- PORTLET MAIN -->
+<div class="portlet light profile-sidebar-portlet ">
+    <!-- SIDEBAR USERPIC -->
+    <!-- SIDEBAR USER TITLE -->
+    <div class="profile-addmedia">
+        <form method="post" enctype="multipart/form-data" class="clearfix">
+            <label class="input-label  pull-left"><i class="file-icon inline-block"></i> <b> Upload </b> your profile picture</label>
+            <br>
+            <div class="file-upload pull-left btn btn-primary fileUpload" style="display: block; clear: both;">
+                <input style="display: block; clear: both;" name='file' class="upload" type="file" accept="pdf/*" id="browse-2" value="upload" />
+            </div>
+            <input type="hidden" name="type" value="usermedia">
+            <p style="display: block; clear: both;"><button type="submit" class="btn btn-primary" id="submit6">Upload</button></p>
+        </form>
+    </div>
+    <div>
+        <?php
+            foreach($user_media['usermedia'] as $media) {
+                if(isset($media['directory']) && !empty($media['directory']))
+                    echo '<img width=100 height=100 src="' .$privateMediaUri
+                        .$media['directory'] .'/' .$media['filename'] .'"><br><br>';
+            }
+        ?>
+    </div>
+    <!-- END MENU -->
+</div>
+<!-- END PORTLET MAIN -->

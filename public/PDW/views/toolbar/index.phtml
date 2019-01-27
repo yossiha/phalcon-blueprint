@@ -1,0 +1,301 @@
+<style>
+    #pdw-toolbar-hide {
+        background-color: #eeeeee;
+        border-right: 1px solid #e1e1e1;
+        border-top: 1px solid #e1e1e1;
+        bottom: 0;
+        cursor: pointer;
+        padding: 2px 30px;
+        position: fixed;
+        left: 0;
+    }
+    #pdw-toolbar {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 50px;
+        margin-bottom: 0;
+        font-size: 13px;
+        color: #000000;
+        background-color: #f7f7f7;
+        border-top: 1px solid #eeeeee;
+    }
+    #pdw-toolbar > .pdw-ul {
+        float: left;
+        display: block;
+        margin: 0 0 0 10px;
+        padding: 0;
+    }
+    #pdw-toolbar > .pdw-ul > li {
+        float: left;
+        list-style: outside none none;
+        vertical-align: middle;
+    }
+    #pdw-toolbar > .pdw-ul > li > a {
+        outline: none;
+    }
+    #pdw-toolbar > .pdw-ul > li.pdw-li-active {
+        background-color: #CCCCCC;
+    }
+    #pdw-toolbar > .pdw-ul > li > a {
+        color: #000000;
+        padding: 5px 15px;
+        float: none;
+        display: block;
+    }
+    #pdw-toolbar > .pdw-ul > li > .label {
+        background-color: #999999;
+        color: #ffffff;
+        display: inline-block;
+        font-size: 11.844px;
+        font-weight: normal;
+        line-height: 14px;
+        padding: 2px 4px;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        vertical-align: baseline;
+        white-space: nowrap;
+    }
+    .label-info {
+        background-color: #3a87ad;
+    }
+    #pdw-icon {
+        float: left;
+        display: block;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        padding: 7px 0 0 7px;
+        position: relative;
+        top: 10px;
+        left: 10px;
+    }
+    .pdw-panel {
+        z-index: 10001;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 50px;
+        left: 0;
+        background: #ffffff;
+        overflow: auto;
+        padding: 10px;
+    }
+    .pdw-panel-close {
+        cursor: pointer;
+    }
+    .pdw-sql-data-table {
+        width: 100%;
+    }
+    .pdw-sql-data-table tr td {
+        border: 1px solid #eeeeee;
+        padding: 4px;
+    }
+
+    .pdw-panel {
+        direction: ltr;
+    }
+
+    .pdw-toolbar {
+        direction: ltr;
+    }
+
+    #pdw-toolbar-hide {
+        display: none;
+    }
+</style>
+
+<div id="pdw-toolbar-hide">Debug</div>
+<div id="pdw-toolbar">
+    <div id="pdw-icon">
+        Close
+    </div>
+    <ul class="pdw-ul">
+        <li class="pdw-li">
+            <a href='#' class="pwd-link" data-id="server">
+                <b>Server</b>
+                <br />
+                <small class="label">
+                    Phalcon: <?php echo \Phalcon\Version::get(); ?>
+                </small>
+            </a>
+        </li>
+        <li class="pdw-li">
+            <a href='#' class="pwd-link" data-id="views">
+                <b>Views</b>
+                <br />
+                <small class="label">
+                    <?php echo count($debugWidget->getRenderedViews()); ?> rendered
+                </small>
+            </a>
+        </li>
+        <li class="pdw-li">
+            <a href='#' class="pwd-link" data-id="db">
+                <b>Database</b>
+                <br />
+                <small class="label">
+                    <?php echo $debugWidget->getQueryCount(); ?> queries
+                </small>
+            </a>
+        </li>
+    </ul>
+    <?php
+    $panels = array('server', 'views', 'db');
+    foreach ($panels as $panel) {
+        echo "<div class='pdw-panels' id='pdw-panel-{$panel}' style='display: none;'>";
+        $this->partial("panels/{$panel}");
+        echo "</div>";
+    }
+    ?>
+
+    <ul class="pdw-ul">
+        <li>
+            <a>
+                Load time:
+                <br />
+                <small class="label label-info">
+                    <?php echo round(($debugWidget->getEndTime() - $debugWidget->getStartTime()), 6); ?> s
+                </small>
+            </a>
+        </li>
+        <li>
+            <a>
+                Elapsed time:
+                <br />
+                <small class="label label-info">
+                    <?php echo round(($debugWidget->getEndTime() - $_SERVER['REQUEST_TIME'] ), 6); ?> s
+                </small>
+            </a>
+        </li>
+        <li>
+            <a>
+                Mem:
+                <br />
+                <small class="label label-info">
+                    <?php echo number_format(memory_get_usage()/1024, 2); ?> KB
+                </small>
+            </a>
+        </li>
+        <li>
+            <a>
+                Mem peak:
+                <br />
+                <small class="label label-info">
+                    <?php echo number_format(memory_get_peak_usage()/1024, 2); ?> KB
+                </small>
+            </a>
+        </li>
+        <li>
+            <a>
+                Session size:
+                <br/>
+                <small class="label label-info">
+                    <?php if(isset($_SESSION)):?>
+                        <?php printf('%0.3F KB' ,mb_strlen(serialize($_SESSION))/1024); ?>
+                    <?php else:?>
+                        0
+                    <?php endif?>
+                </small>
+            </a>
+        </li>
+    </ul>
+</div>
+<script>
+
+    /*if (getCookie("pdwIsOpen") == undefined) {
+        document.getElementById("pdw-toolbar-hide").style.display = 'block';
+        document.getElementById("pdw-toolbar").style.display = 'none';
+    };
+    if (getCookie("pdwIsOpen") == "true") {
+        document.getElementById("pdw-toolbar-hide").style.display = 'none';
+        document.getElementById("pdw-toolbar").style.display = 'block';
+    } else {
+        document.getElementById("pdw-toolbar-hide").style.display = 'block';
+        document.getElementById("pdw-toolbar").style.display = 'none';
+    };*/
+
+    document.getElementById('pdw-toolbar-hide').onclick = function () {
+        document.getElementById("pdw-toolbar-hide").style.display = 'none';
+        document.getElementById("pdw-toolbar").style.display = 'block';
+
+        //setCookie("pdwIsOpen", true);
+    };
+
+    document.getElementById('pdw-icon').onclick = function () {
+        document.getElementById("pdw-toolbar-hide").style.display = 'block';
+        document.getElementById("pdw-toolbar").style.display = 'none';
+
+        //setCookie("pdwIsOpen", false);
+    };
+
+    document.getElementById("pdw-toolbar-hide").style.display = 'block';
+    document.getElementById("pdw-toolbar").style.display = 'none';
+    /*function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    };
+
+    function setCookie(name, value, options) {
+        options = options || {path: '/'};
+
+        var expires = options.expires;
+
+        if (typeof expires == "number" && expires) {
+            var d = new Date();
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+        }
+        if (expires && expires.toUTCString) {
+            options.expires = expires.toUTCString();
+        }
+
+        value = encodeURIComponent(value);
+
+        var updatedCookie = name + "=" + value;
+
+        for (var propName in options) {
+            updatedCookie += "; " + propName;
+            var propValue = options[propName];
+            if (propValue !== true) {
+                updatedCookie += "=" + propValue;
+            }
+        }
+
+        document.cookie = updatedCookie;
+    };*/
+
+    var link = document.getElementsByClassName('pwd-link');
+
+    for (var i = 0; i < link.length; i++) {
+        link[i].onclick = function () {
+            var href = this.getAttribute("data-id");
+
+            if (document.getElementsByClassName('pdw-li-active').length != 0) {
+                document.getElementsByClassName('pdw-li-active')[0].className = document.getElementsByClassName('pdw-li-active')[0].className.replace("pdw-li-active", "");
+            }
+
+            if (document.getElementById("pdw-panel-" + href).style.display == "none") {
+                document.getElementById("pdw-panel-server").style.display = 'none';
+                document.getElementById("pdw-panel-views").style.display = 'none';
+                document.getElementById("pdw-panel-db").style.display = 'none';
+
+                document.getElementById("pdw-panel-" + href).style.display = 'block';
+
+                this.parentNode.className = this.parentNode.className + " pdw-li-active";
+
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.getElementById("pdw-panel-server").style.display = 'none';
+                document.getElementById("pdw-panel-views").style.display = 'none';
+                document.getElementById("pdw-panel-db").style.display = 'none';
+
+                document.body.style.overflow = 'auto';
+            }
+
+
+        }
+    };
+</script>

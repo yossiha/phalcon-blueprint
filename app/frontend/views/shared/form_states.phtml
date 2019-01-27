@@ -1,0 +1,78 @@
+<?php
+/*This partial accepts: name, value, class */
+if(empty($name)) $name='state'; ?>
+
+<select name="<?= $name ?>" class="selectpicker <?php if(isset($class)) echo $class; ?>">
+    <option value="">Select State</option>
+    <option value="AL" <?php if(isset($value) && $value=='AL') echo ' selected';?>>Alabama</option>
+    <option value="AK" <?php if(isset($value) && $value=='AK') echo ' selected';?>>Alaska</option>
+    <option value="AZ" <?php if(isset($value) && $value=='AZ') echo ' selected';?>>Arizona</option>
+    <option value="AR" <?php if(isset($value) && $value=='AR') echo ' selected';?>>Arkansas</option>
+    <option value="CA" <?php if(isset($value) && $value=='CA') echo ' selected';?>>California</option>
+    <option value="CO" <?php if(isset($value) && $value=='CO') echo ' selected';?>>Colorado</option>
+    <option value="CT" <?php if(isset($value) && $value=='CT') echo ' selected';?>>Connecticut</option>
+    <option value="DE" <?php if(isset($value) && $value=='DE') echo ' selected';?>>Delaware</option>
+    <option value="DC" <?php if(isset($value) && $value=='DC') echo ' selected';?>>District of Columbia</option>
+    <option value="FL" <?php if(isset($value) && $value=='FL') echo ' selected';?>>Florida</option>
+    <option value="GA" <?php if(isset($value) && $value=='GA') echo ' selected';?>>Georgia</option>
+    <option value="HI" <?php if(isset($value) && $value=='HI') echo ' selected';?>>Hawaii</option>
+    <option value="ID" <?php if(isset($value) && $value=='ID') echo ' selected';?>>Idaho</option>
+    <option value="IL" <?php if(isset($value) && $value=='IL') echo ' selected';?>>Illinois</option>
+    <option value="IN" <?php if(isset($value) && $value=='IN') echo ' selected';?>>Indiana</option>
+    <option value="IA" <?php if(isset($value) && $value=='IA') echo ' selected';?>>Iowa</option>
+    <option value="KS" <?php if(isset($value) && $value=='KS') echo ' selected';?>>Kansas</option>
+    <option value="KY" <?php if(isset($value) && $value=='KY') echo ' selected';?>>Kentucky</option>
+    <option value="LA" <?php if(isset($value) && $value=='LA') echo ' selected';?>>Louisiana</option>
+    <option value="ME" <?php if(isset($value) && $value=='ME') echo ' selected';?>>Maine</option>
+    <option value="MD" <?php if(isset($value) && $value=='MD') echo ' selected';?>>Maryland</option>
+    <option value="MA" <?php if(isset($value) && $value=='MA') echo ' selected';?>>Massachusetts</option>
+    <option value="MI" <?php if(isset($value) && $value=='MI') echo ' selected';?>>Michigan</option>
+    <option value="MN" <?php if(isset($value) && $value=='MN') echo ' selected';?>>Minnesota</option>
+    <option value="MS" <?php if(isset($value) && $value=='MS') echo ' selected';?>>Mississippi</option>
+    <option value="MO" <?php if(isset($value) && $value=='MO') echo ' selected';?>>Missouri</option>
+    <option value="MT" <?php if(isset($value) && $value=='MT') echo ' selected';?>>Montana</option>
+    <option value="NE" <?php if(isset($value) && $value=='NE') echo ' selected';?>>Nebraska</option>
+    <option value="NV" <?php if(isset($value) && $value=='NV') echo ' selected';?>>Nevada</option>
+    <option value="NH" <?php if(isset($value) && $value=='NH') echo ' selected';?>>New Hampshire</option>
+    <option value="NJ" <?php if(isset($value) && $value=='NJ') echo ' selected';?>>New Jersey</option>
+    <option value="NM" <?php if(isset($value) && $value=='NM') echo ' selected';?>>New Mexico</option>
+    <option value="NY" <?php if(isset($value) && $value=='NY') echo ' selected';?>>New York</option>
+    <option value="NC" <?php if(isset($value) && $value=='NC') echo ' selected';?>>North Carolina</option>
+    <option value="ND" <?php if(isset($value) && $value=='ND') echo ' selected';?>>North Dakota</option>
+    <option value="OH" <?php if(isset($value) && $value=='OH') echo ' selected';?>>Ohio</option>
+    <option value="OK" <?php if(isset($value) && $value=='OK') echo ' selected';?>>Oklahoma</option>
+    <option value="OR" <?php if(isset($value) && $value=='OR') echo ' selected';?>>Oregon</option>
+    <option value="PA" <?php if(isset($value) && $value=='PA') echo ' selected';?>>Pennsylvania</option>
+    <option value="RI" <?php if(isset($value) && $value=='RI') echo ' selected';?>>Rhode Island</option>
+    <option value="SC" <?php if(isset($value) && $value=='SC') echo ' selected';?>>South Carolina</option>
+    <option value="SD" <?php if(isset($value) && $value=='SD') echo ' selected';?>>South Dakota</option>
+    <option value="TN" <?php if(isset($value) && $value=='TN') echo ' selected';?>>Tennessee</option>
+    <option value="TX" <?php if(isset($value) && $value=='TX') echo ' selected';?>>Texas</option>
+    <option value="UT" <?php if(isset($value) && $value=='UT') echo ' selected';?>>Utah</option>
+    <option value="VT" <?php if(isset($value) && $value=='VT') echo ' selected';?>>Vermont</option>
+    <option value="VA" <?php if(isset($value) && $value=='VA') echo ' selected';?>>Virginia</option>
+    <option value="WA" <?php if(isset($value) && $value=='WA') echo ' selected';?>>Washington</option>
+    <option value="WV" <?php if(isset($value) && $value=='WV') echo ' selected';?>>West Virginia</option>
+    <option value="WI" <?php if(isset($value) && $value=='WI') echo ' selected';?>>Wisconsin</option>
+    <option value="WY" <?php if(isset($value) && $value=='WY') echo ' selected';?>>Wyoming</option>
+</select>
+
+<?php
+/*$states = array(
+    'AL'=>'Alabama', 'AK'=>'Alaska', 'AZ'=>'Arizona', 'AR'=>'Arkansas', 'CA'=>'California', 'CO'=>'Colorado',
+    'CT'=>'Connecticut', 'DE'=>'Delaware', 'DC'=>'District of Columbia', 'FL'=>'Florida', 'GA'=>'Georgia',
+    'HI'=>'Hawaii', 'ID'=>'Idaho', 'IL'=>'Illinois', 'IN'=>'Indiana', 'IA'=>'Iowa',
+    'KS'=>'Kansas', 'KY'=>'Kentucky', 'LA'=>'Louisiana', 'ME'=>'Maine', 'MD'=>'Maryland', 'MA'=>'Massachusetts',
+    'MI'=>'Michigan', 'MN'=>'Minnesota', 'MS'=>'Mississippi', 'MO'=>'Missouri', 'MT'=>'Montana', 'NE'=>'Nebraska',
+    'NV'=>'Nevada', 'NH'=>'New Hampshire', 'NJ'=>'New Jersey', 'NM'=>'New Mexico',
+    'NY'=>'New York', 'NC'=>'North Carolina', 'ND'=>'North Dakota', 'OH'=>'Ohio', 'OK'=>'Oklahoma',
+    'OR'=>'Oregon', 'PA'=>'Pennsylvania', 'RI'=>'Rhode Island', 'SC'=>'South Carolina', 'SD'=>'South Dakota',
+    'TN'=>'Tennessee', 'TX'=>'Texas', 'UT'=>'Utah', 'VT'=>'Vermont', 'VA'=>'Virginia', 'WA'=>'Washington',
+    'WV'=>'West Virginia', 'WI'=>'Wisconsin', 'WY'=>'Wyoming');*/
+
+/*$states = array(
+    'AL',    'AK',    'AZ',    'AR',    'CA',    'CO',    'CT',    'DE',    'DC',    'FL',    'GA',    'HI',    'ID',    'IL',    'IN',    'IA',
+    'KS',    'KY',    'LA',    'ME',    'MD',    'MA',    'MI',    'MN',    'MS',    'MO',    'MT',    'NE',    'NV',    'NH',    'NJ',    'NM',
+    'NY',    'NC',    'ND',    'OH',    'OK',    'OR',    'PA',    'RI',    'SC',    'SD',    'TN',    'TX',    'UT',    'VT',    'VA',    'WA',
+    'WV',    'WI',    'WY');
+*/

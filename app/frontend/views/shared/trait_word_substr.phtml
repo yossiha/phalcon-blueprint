@@ -1,0 +1,19 @@
+<?php
+if(!isset($length))
+    $length = 150;
+
+if(strlen($string) < $length)
+    return print $string;
+else {
+    $new_string = substr($string, 0, strpos($string, ' ', $length));
+
+    if(empty($new_string))
+        echo substr($string, 0, $length);
+    else
+        echo $new_string;
+}
+
+if(isset($dots)) {
+    echo ' ...';
+}
+?>
